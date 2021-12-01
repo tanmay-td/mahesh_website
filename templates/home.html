@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="text-align: center;padding-top:50px;">
+  <!-- Content here -->
+
+<h1>Total Amount to collect from farmers</h1>
+
+<div style="
+    padding-top: 30px;
+">
+<p> Total Amount :- {{total_amount}}</p>
+<p> Total Amount Returnded  :- {{total_amount_returned}}</p>
+<p> Amount Remaining :- {{remaning_amount}}</p>
+</div>
+</div>
+
+{% endblock %}

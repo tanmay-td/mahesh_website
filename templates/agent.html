@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form style="margin-left: 100px; margin-top: 50px;" method ='POST' >
+    {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="agent"class ="lablemiddle">Agent Name</label>
+      <input type="text" class="form-control barwidth" id="agent" name="agent" >
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="number"class ="lablemiddle">Phone Number</label>
+      <input type="text" class="form-control barwidth" id="number" name="number" >
+    </div>
+  </div>
+  
+  
+  
+<button type="submit" class="btn btn-primary" style="margin-top: 25px;" name='form1'>Add Agent</button>
+
+</form>
+
+<form method = 'POST'>
+{% csrf_token %}
+<div class="form-group col-md-4" style="
+    position: relative;
+    left: 97px;
+    top: 110px;
+">
+      <label for="anamedisplay"class ="lablemiddle">Agent Name</label>
+      <select id="anamedisplay" class="form-control barwidth" name="anamedisplay">
+        {% for data in data %}
+        <option>{{ data.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+<button type="submit" class="btn btn-primary" name = 'displayfarmer'style="
+    position:relative;
+    top:75px;
+    left:350px;" >View Farmers Under Agent</button>
+  </form>
+
+<table class="table table-striped table-dark"style="
+   width: 48%;
+   position: relative;
+   bottom: 281px;
+   left:650px;
+   ">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for data in data  %}
+    <tr>
+      <td>{{data.name}}</td>
+      <td>{{data.phone_number}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+
+<form style="margin-left: 100px; margin-top: 50px;" method = 'POST' style="position:fixed">
+{% csrf_token %}
+   <div class="form-group col-md-4" style="
+    display: inline;
+    position: relative;
+    left: 550px;
+    bottom: 300px; 
+    ">
+      <label for="aname"class ="lablemiddle" style="
+    position: relative;
+    top: 15px;
+    left: 50px;">Agent Name</label>
+      <select id="aname" class="form-control barwidth" name ="aname" style="width: 13%;position: relative;left: 194px;bottom: 20px;">
+        {% for data in data %}
+        <option>{{data.name}}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-primary" style="
+    margin-top: 25px;
+    position: relative;
+    left: 396px;
+    bottom: 83px;
+    " name = 'form2'>Delete</button>
+    </div>
+      
+  </form>
+
+
+
+
+
+{% endblock content %}

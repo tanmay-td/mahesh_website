@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<form style="margin-left: 100px; margin-top: 50px;" method ='POST'>
+{% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name" class ="lablemiddle">Name</label>
+      <input type="text" class="form-control barwidth" id="name" name= "name" >
+    </div>
+  </div>
+   <div class="form-group col-md-4">
+      <label for="aname"class ="lablemiddle">Agent Name</label>
+      <select id="aname" class="form-control barwidth" name="anmae">
+        {% for data in data %}
+        <option>{{ data.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="phone"class ="lablemiddle">Phone Number</label>
+      <input type="text" class="form-control barwidth" id="phone" name= "phone" >
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="quantity" class ="lablemiddle">Quantity (Kg)</label>
+      <input type="text" class="form-control barwidth" id="quantity" name="quantity" >
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="rate" class ="lablemiddle">Rate</label>
+      <input type="text" class="form-control barwidth" id="rate" name="rate" >
+    </div>
+  </div>
+  
+  
+  
+  <button type="submit" class="btn btn-primary" style="
+    margin-top: 25px;" name = 'form1'>Add Farmer</button>
+</form>
+
+
+
+
+<table class="table table-striped table-dark"style="
+    margin-left: 700px;
+    padding-bottom: 0px;
+    position: relative;
+    bottom: 370px;
+    right:20px;
+    width: 48%;">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">TOTAL AMOUNT</th>
+      <th scope="col">RETURNED</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for farmerdata in farmerdata  %}
+    <tr>
+      <td>{{farmerdata.name}}</td>
+      <td>{{farmerdata.phone_number}}</td>
+      <td>{{farmerdata.total_balance}}</td>
+      <td>{{farmerdata.returned}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<form style="margin-left: 100px; margin-top: 50px;" method = 'POST' style="position:fixed">
+{% csrf_token %}
+   <div class="form-group col-md-4" style="
+    display: inline;
+    position: relative;
+    left: 644px;
+    bottom: 379px; 213px;
+    ">
+      <label for="fname"class ="lablemiddle" style="
+    position: relative;
+    top: 15px;
+    left: 50px;">Farmer Name</label>
+      <select id="fname" class="form-control barwidth" name ="fname" style="width: 13%;position: relative;left: 194px;bottom: 20px;">
+        {% for data in farmerdata %}
+        <option>{{data.name}}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-primary" style="
+    margin-top: 25px;
+    position: relative;
+    left: 396px;
+    bottom: 83px;
+    " name = 'form2'>Delete</button>
+    </div>
+      
+  </form>
+
+
+{% endblock  %}

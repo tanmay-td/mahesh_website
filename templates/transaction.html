@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form style="margin-left: 100px; margin-top: 50px;" method = 'POST'>
+{% csrf_token %}
+   <div class="form-group col-md-4">
+      <label for="name"class ="lablemiddle">Farmer Name</label>
+      <select id="name" class="form-control barwidth" name ="name">
+        {% for data in data %}
+        <option>{{data.name}}</option>
+        {% endfor %}
+      </select>
+      
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="amount"class ="lablemiddle">Amount</label>
+      <input type="text" class="form-control barwidth" id="amount" name="amount">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="remark" class ="lablemiddle">Remark</label>
+      <input type="text" class="form-control barwidth" id="remark" name ="remark" >
+    </div>
+  </div>
+  
+  
+  
+  <button type="submit" class="btn btn-primary" style="
+    margin-top: 25px;" name='pay'>PAY</button>
+</form>
+
+<form method = 'POST'>
+{% csrf_token %}
+<div class="form-group col-md-4" style="
+    
+    position: relative;
+    left: 99px;
+    top: 25px;
+
+">
+      <label for="fnamedisplay"class ="lablemiddle">Farmer Name</label>
+      <select id="fnamedisplay" class="form-control barwidth" name="fnamedisplay">
+        {% for data in data %}
+        <option>{{ data.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+<button type="submit" class="btn btn-primary" name = 'displaytran'style="
+    position:relative;
+    top: -15px;
+    left: 328px;
+    " >View Farmer All Transactions</button>
+  </form>
+
+<table class="table table-striped table-dark"style="
+    margin-left: 700px;
+    padding-bottom: 0px;
+    position: relative;
+    bottom: 350px;
+    right:20px;
+    width: 43%;">
+  <thead>
+    <tr>
+      <th scope="col">FARMER NAME</th>
+      <th scope="col">PAID</th>
+      <th scope="col">DATE</th>
+      <th scope="col">REMARKS</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for data in transactiondata  %}
+    <tr>
+      <td>{{data.name}}</td>
+      <td>{{data.paid}}</td>
+      <td>{{data.date}}</td>
+      <td>{{data.remark}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+
+
+{% endblock content %}
